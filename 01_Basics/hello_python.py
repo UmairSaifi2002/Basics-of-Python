@@ -7,3 +7,7 @@ def hello(n):
 
 # To call this function we use it's name and pass the parameters
 hello("umair") # -> Hello umair -> here python automatically add space b/w Hello and parameter
+
+hello_one = 'lemon_tea'
+hello_two = 'ginger_tea'
+hello_three = 'masala_tea'
