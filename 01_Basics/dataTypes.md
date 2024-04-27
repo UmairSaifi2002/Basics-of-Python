@@ -9,5 +9,5 @@
 - File : open('eggs.txt'), open(r'C:\Users\bin', 'wb')
 - Boolean : True, False
 - None : None
-- Function, Modules, Classes
+- Function, Modules, Classes.
 -ADVANCED : Decorators, Generators, Iterators, MetaProgramming
