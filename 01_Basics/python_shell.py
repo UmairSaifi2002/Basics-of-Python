@@ -141,3 +141,37 @@
 # but Example 2 m hamny dono list k ek hi reference m change kara h jo ki possible h kyu ki list is mutable
 # reference change krna aur reference m change krny m bohot difference hai please keep it in your mind
 # don't confuse
+
+#-----------------------------------------------------------------------------------------------------------------------
+# EXAMPLE 3
+# Here we do Slicing
+# >>> h1 = [1,2,3,4] 
+# >>> h2 = h1[:] -> in slicing a copy is assigned to a variable
+# -> so we have two different references
+# >>> h1
+# [1, 2, 3, 4]
+# >>> h2
+# [1, 2, 3, 4]
+# >>> h1[0] = 45  -> so if change in one reference then it donot change another reference
+# >>> h1
+# [45, 2, 3, 4]
+# >>> h2
+# [1, 2, 3, 4]
+
+#-----------------------------------------------------------------------------------------------------------------------
+# EXAMPLE 4
+# >>> n1 = [1,2,3]
+# >>> n2 = n1 -> both n1 and n2 have same reference
+# >>> n1 == n2 -> if we check that n1 and n2 is equal
+# True
+# >>> n1 is n2 ->  if we check that n1 and n2 have same reference
+# True
+# >>> n1 = [1,2,3] -> now n1 have different reference
+# >>> n1
+# [1, 2, 3]
+# >>> n2   
+# [1, 2, 3]
+# >>> n1 == n2 -> if we check that n1 and n2 are equal
+# True
+# >>> n1 is n2 -> if we check that n1 and n2 have same reference
+# False
