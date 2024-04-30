@@ -1,33 +1,44 @@
 # >>> chai = 'Masla Chai'
 # >>> chai
 # 'Masla Chai'
+
 # >>> slice_chai = chai[0:6]
 # >>> slice_chai
 # 'Masla '
+
 # >>> num_list = "0123456789"
 # >>> num_list[:]
 # '0123456789'
+
 # >>> num_list[3:]
 # '3456789'
+
 # >>> num_list[:7]  
 # '0123456'
+
 # >>> num_list[0:7:2]
 # '0246'
+
 # >>> num_list[0:7:3] 
 # '036'
+
 # >>> print(upper(chai))
 # Traceback (most recent call last):
 #   File "<stdin>", line 1, in <module>
 # NameError: name 'upper' is not defined. Did you mean: 'super'?
+
 # >>> print(chai.upper())
 # MASLA CHAI
+
 # >>> print(chai.lower()) 
 # masla chai
+
 # >>> chai  
 # 'Masla Chai'
 # >>> chai = "    Masala Chai   "
 # >>> print(chai)
 #     Masala Chai   
+
 # >>> print(chai.strip()) 
 # Masala Chai
 # >>> chai = "Lemon Chai"
