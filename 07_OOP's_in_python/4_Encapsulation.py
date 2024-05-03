@@ -17,6 +17,13 @@ class Car:
     def full_name(self):
         return f"{self.__brand} {self.__model}"
     
+    # now we create a setter method
+    def set_brand(self, brand):
+        self.__brand = brand
+
+    def set_model(self, model):
+        self.__model = model
+    
 class ElectricCar(Car):
     def __init__(self,brand,model,battery_size):
         
@@ -26,3 +33,9 @@ class ElectricCar(Car):
 my_tesla = ElectricCar("Tesla","Model S","85KWh")
 
 print(my_tesla.get_brand())
+
+my_car = Car("Toyota","Corolla")
+print(my_car.full_name())
+my_car.set_brand("Mahindra")
+my_car.set_model("TUV500")
+print(my_car.full_name())
