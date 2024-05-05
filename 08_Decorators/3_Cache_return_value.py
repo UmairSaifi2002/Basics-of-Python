@@ -13,10 +13,11 @@ def cache(func):
         result = func(*args)
         return result
     return wrapper
+
 @cache
 def long_running_func(a,b):
     time.sleep(10)
     return a + b
 
 print(long_running_func(2,5))
-long_running_func(10,5)
+print(long_running_func(10,5))
