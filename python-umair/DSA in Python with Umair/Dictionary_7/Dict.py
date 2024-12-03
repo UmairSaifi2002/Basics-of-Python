@@ -31,7 +31,7 @@
 # Traverse a Dictionary
 myDict = {'name': 'umair', 'age': '21', 'height': '5f11i'}
 for key in myDict:
-    print(myDict[key],end=', ')
+    print(myDict[key],end=',')
 print()
 
 
