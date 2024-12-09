@@ -71,7 +71,89 @@ class LinkedList:
         current.next = new_node  # Update the current node's 'next' to the new node
 
         self.length += 1
+    
+    # pop the first element from the linkedlist
+    def popFirst(self):
+        '''
+        PoP first element from the linkedlist
+        '''
+        if self.length == 0:
+            return None
+        curr = self.head
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+            return curr
+        elif self.length > 1:
+            self.head = curr.next
+            curr.next = None
+            self.length -= 1
+        return curr
+    
+    # pop last element from the linkedlist
+    def popLast(self):
+        '''
+        POP last element from the linkedlist
+        '''
+        curr = self.head
+        while curr.next != self.tail:
+            curr = curr.next
+        popped = curr.next
+        curr.next = None
+        self.tail = curr
+        self.length -= 1
+        return popped
+    
+    # pop the element in between the linkedlist
+    def pop(self, index):
+        '''
+        Pop the element in between the linked list
+        '''
+        curr = self.head
+        for _ in range(index-2):
+            curr = curr.next
+        popped = curr
+        curr.next = curr.next.next
+        popped.next = None
+        self.length -= 1
+        return popped
+    
+    # Search an element in a linkedlist
+    def search(self,value):
+        '''
+        Searching an element in a Linkedlist
+        '''
+        current = self.head
+        while current:
+            if current.value == value:
+                return True
+            current = current.next
+        return False
+    
+    # get_Method 
+    def get(self, index):
+        if index == -1:
+            return self.tail
+        if index < -1 or index >= self.length:
+            return None
+        current = self.head
+        for _ in range(index):
+            current = current.next
+        return current
 
+    # set_Method
+    def set_value(self, index, value):
+        if index == 0:
+            self.head.value = value
+        elif index == self.length-1:
+            self.tail.value = value
+        else:
+            curr = self.head
+            for _ in range(index):
+                curr = curr.next
+            curr.value = value
+
+    # Pints the LinkedList
     def display(self):
         """
         Print all elements in the LinkedList.
@@ -86,6 +168,7 @@ class LinkedList:
             current = current.next
         print("None")
 
+    # Prints the LinkedLists using dunder method
     def __str__(self):
         """
         Override the default string representation of the LinkedList for easier debugging.
@@ -131,3 +214,24 @@ if __name__ == "__main__":
 
     # Print the length of the LinkedList
     print(f"\nLength of LinkedList: {linked_list.length}")
+
+    # Searching the element in the LinkedList
+    print(linked_list.search(25))
+
+    # Set the value of particular node
+    linked_list.set_value(0,40)
+    linked_list.set_value(linked_list.length-1,400)
+    linked_list.set_value(5,4000)
+    print(linked_list)
+
+    # popping the first element from the linkedlist
+    linked_list.popFirst()
+    print(linked_list)
+
+    # popping the last element from the linkedlist
+    linked_list.popLast()
+    print(linked_list)
+
+    # pop the element
+    linked_list.pop(5)
+    print(linked_list)
