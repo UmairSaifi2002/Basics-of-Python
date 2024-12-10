@@ -19,6 +19,7 @@ class LinkedList:
         self.tail = None
         self.length = 0
 
+    # Prepand method -> O(1)
     def insert_at_beginning(self, value):
         """
         Insert a new node at the beginning of the LinkedList.
@@ -33,6 +34,7 @@ class LinkedList:
 
         self.length += 1
 
+    # append method -> O(1)
     def insert_at_end(self, value):
         """
         Insert a new node at the end of the LinkedList.
@@ -48,6 +50,7 @@ class LinkedList:
 
         self.length += 1
 
+    # insert method -> O(n)
     def insert_at_position(self, value, position):
         """
         Insert a new node at a specified position in the LinkedList.
@@ -73,6 +76,7 @@ class LinkedList:
         self.length += 1
     
     # pop the first element from the linkedlist
+    # pop_first method  -> O(1)
     def popFirst(self):
         '''
         PoP first element from the linkedlist
@@ -91,7 +95,8 @@ class LinkedList:
         return curr
     
     # pop last element from the linkedlist
-    def popLast(self):
+    # pop method -> O(n)
+    def POP(self):
         '''
         POP last element from the linkedlist
         '''
@@ -105,20 +110,42 @@ class LinkedList:
         return popped
     
     # pop the element in between the linkedlist
-    def pop(self, index):
+    # remove method -> O(n)
+    def remove(self, index):
         '''
         Pop the element in between the linked list
         '''
-        curr = self.head
-        for _ in range(index-2):
-            curr = curr.next
-        popped = curr
-        curr.next = curr.next.next
-        popped.next = None
-        self.length -= 1
-        return popped
+        if self.length is 0:
+            return None
+        if self.length is 1:
+            curr = self.head
+            self.head = None
+            self.tail = None
+            return curr
+        if index >= self.length:
+            return "ERROR: Index is Out of Bound"
+        else:
+            curr = self.head
+            # print(curr.value)
+            i = 1
+            while i < index-1:
+                curr = curr.next
+                i +=1
+            prev = curr
+            popped = curr.next
+            prev.next = popped.next
+            popped.next = None
+            return popped
+    
+    # delete all the nodes
+    # delete method -> O(1)
+    def delete(self):
+        self.head = None
+        self.tail = None
+        return None
     
     # Search an element in a linkedlist
+    # search method -> O(n)
     def search(self,value):
         '''
         Searching an element in a Linkedlist
@@ -130,7 +157,7 @@ class LinkedList:
             current = current.next
         return False
     
-    # get_Method 
+    # get_Method -> O(n)
     def get(self, index):
         if index == -1:
             return self.tail
@@ -141,7 +168,7 @@ class LinkedList:
             current = current.next
         return current
 
-    # set_Method
+    # set_Method -> O(n)
     def set_value(self, index, value):
         if index == 0:
             self.head.value = value
@@ -153,7 +180,7 @@ class LinkedList:
                 curr = curr.next
             curr.value = value
 
-    # Pints the LinkedList
+    # Pints the LinkedList  -> O(n)
     def display(self):
         """
         Print all elements in the LinkedList.
@@ -168,7 +195,7 @@ class LinkedList:
             current = current.next
         print("None")
 
-    # Prints the LinkedLists using dunder method
+    # Prints the LinkedLists using dunder method  -> O(n)   
     def __str__(self):
         """
         Override the default string representation of the LinkedList for easier debugging.
@@ -183,6 +210,27 @@ class LinkedList:
             current = current.next
 
         return " -> ".join(result) + " -> None"
+    
+    # # Reverse a LinkedList
+    def Reverse(self):
+        if self.length is 0: # Check if the linked list is empty
+            return "Error: Linked List is Empty"
+        elif self.length is 1: # Check if the linked list contains only one node
+            return "Already Reversed"
+        else:
+            prev = None
+            curr = self.head
+            Next = curr.next # Initialize the 'Next' variable with the next node
+            # Swap the head and tail pointers
+            self.head, self.tail = self.tail, self.head
+            while curr is not None:
+                curr.next = prev  # Reverse the 'next' pointer of the current node
+                prev = curr  # Move the 'prev' pointer to the current node
+    
+                # Update 'Next' before moving 'curr' to avoid NoneType errors
+                curr = Next  # Move the 'curr' pointer to the next node
+                if Next is not None:
+                    Next = Next.next  # Update 'Next' to the next node
 
 
 # Demonstrating LinkedList functionality
@@ -229,9 +277,13 @@ if __name__ == "__main__":
     print(linked_list)
 
     # popping the last element from the linkedlist
-    linked_list.popLast()
+    linked_list.POP()
     print(linked_list)
 
     # pop the element
-    linked_list.pop(5)
+    linked_list.remove(5)
+    print(linked_list)
+
+    # Reverse a linked list
+    linked_list.Reverse()
     print(linked_list)
