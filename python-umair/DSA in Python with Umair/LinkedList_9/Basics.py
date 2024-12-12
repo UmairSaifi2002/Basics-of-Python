@@ -231,7 +231,50 @@ class LinkedList:
                 curr = Next  # Move the 'curr' pointer to the next node
                 if Next is not None:
                     Next = Next.next  # Update 'Next' to the next node
+    
+    # finding out the middle of the linkedlist
+    def Middle_of_LinkedList(self):
+        '''
+        Check the linkedlist for palindrome
+        '''
+        slow = self.head
+        fast = self.head
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+    
+    # remove Duplicates
+    # By me
+    # def remove_duplicate(self):
+    #     ls = []
+    #     temp = self.head
+    #     while temp is not None:
+    #         a = temp.value
+    #         if a not in ls:
+    #             ls.append(a)
+    #         temp = temp.next
+    #     # print(ls)
+    #     self.head = None
+    #     self.tail = None
+    #     for i in range(len(ls)):
+    #         linked_list.insert_at_end(ls[i])
 
+    # By sir
+    def remove_duplicate(self):
+        if self.head is None:
+            return "Nothing is here"
+        node_values = set()  # set to store unique node values
+        current_node = self.head
+        node_values.add(current_node.value)
+        while current_node.next:
+            if current_node.next.value in node_values:  # duplicate found
+                current_node.next = current_node.next.next
+                self.length -= 1
+            else:
+                node_values.add(current_node.next.value)
+                current_node = current_node.next
+        self.tail = current_node
 
 # Demonstrating LinkedList functionality
 if __name__ == "__main__":
@@ -285,5 +328,11 @@ if __name__ == "__main__":
     print(linked_list)
 
     # Reverse a linked list
-    linked_list.Reverse()
+    # linked_list.Reverse()
+    # print(linked_list)
+
+    linked_list.insert_at_beginning(1)
+    linked_list.insert_at_end(1)
+    print(linked_list)
+    linked_list.remove_duplicate()
     print(linked_list)
