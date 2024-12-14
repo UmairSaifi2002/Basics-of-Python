@@ -8,7 +8,6 @@ class Node:
         self.value = value
         self.next = None
 
-
 # Define the LinkedList class
 class LinkedList:
     def __init__(self):
