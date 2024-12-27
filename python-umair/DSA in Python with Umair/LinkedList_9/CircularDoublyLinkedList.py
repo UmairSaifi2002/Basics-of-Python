@@ -173,6 +173,11 @@ class CircularDoublyLinkedList:
             temp.prev = None
             self.length -= 1
         return temp
+    
+    def delete_all(self):
+        self.head = None
+        self.tail = None
+        self.length = 0
 
 cdll = CircularDoublyLinkedList()
 # append the elements
