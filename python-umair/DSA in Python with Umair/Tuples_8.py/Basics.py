@@ -48,5 +48,6 @@ print(max(tup2))
 tup = tuple([1,2,3,4])
 print(type(tup))
 
-
+tupl = tuple(['a','b','c'])
+print(tupl)
 
