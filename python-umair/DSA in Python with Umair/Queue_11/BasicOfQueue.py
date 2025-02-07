@@ -12,7 +12,7 @@ class Queue:
         else:
             return False
 
-    def enqueue(self, value):
+    def enqueue(self, value):  
         self.list.append(value)
         return 'The element is inserted at the end of list.'
 
@@ -47,3 +47,5 @@ print(queue) # 2 3 4 5 6
 print(queue.peek()) # 2
 queue.delete()
 print(queue.isEmpty()) # True
+
+

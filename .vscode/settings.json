@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./python-umair/DSA in Python with Umair/Queue_11"
+    ]
+}
