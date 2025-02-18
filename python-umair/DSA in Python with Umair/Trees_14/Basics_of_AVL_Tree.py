@@ -54,7 +54,7 @@ class AVLTree:
     def preOrderTraversal(self, rootNode):
         if rootNode is None:
             return
-        print(rootNode.data)
+        print(rootNode.data,end=', ')
         self.preOrderTraversal(rootNode.leftChild)
         self.preOrderTraversal(rootNode.rightChild)
     
@@ -62,7 +62,7 @@ class AVLTree:
         if rootNode is None:
             return
         self.inOrderTraversal(rootNode.leftChild)
-        print(rootNode.data)
+        print(rootNode.data,end=', ')
         self.inOrderTraversal(rootNode.rightChild)
 
     def postOrderTraversal(self, rootNode):
@@ -70,7 +70,7 @@ class AVLTree:
             return
         self.postOrderTraversal(rootNode.leftChild)
         self.postOrderTraversal(rootNode.rightChild)
-        print(rootNode.data)
+        print(rootNode.data,end=', ')
     
     def levelOrderTraversal(self, rootNode):
         if rootNode is None:
@@ -79,7 +79,7 @@ class AVLTree:
         customQueue.enqueue(rootNode)
         while not customQueue.isEmpty():
             node = customQueue.dequeue()
-            print(node.data)
+            print(node.data,end=', ')
             if node.leftChild is not None:
                 customQueue.enqueue(node.leftChild)
             if node.rightChild is not None:
@@ -182,7 +182,39 @@ class AVLTree:
             return self.leftRotate(root)
         # Step 5: Return the updated root
         return root 
+    
+    # Now We will Learn about the Deletiion of the node in AVL Tree
+
 
 if __name__ == "__main__":
+    # Create an instance of AVLTree
     avl = AVLTree()
-    
+
+    # Insert nodes into the AVL Tree
+    nodes = [10, 20, 30, 40, 50, 25]
+    for node in nodes:
+        avl.root = avl.insert(avl.root, node)
+
+    # Perform traversals to verify the tree structure
+    print("Level Order Traversal:")
+    avl.levelOrderTraversal(avl.root)
+
+    print("\nIn Order Traversal:")
+    avl.inOrderTraversal(avl.root)
+
+    print("\nPre Order Traversal:")
+    avl.preOrderTraversal(avl.root)
+
+    print("\nPost Order Traversal:")
+    avl.postOrderTraversal(avl.root)
+
+    # Search for a node in the AVL Tree
+    search_value = 30
+    print(f"\nSearching for node with value {search_value}:")
+    result = avl.searchNode(avl.root, search_value)
+    print(result if result else "Node not found") # Successfuly Found
+
+    search_value = 100
+    print(f"\nSearching for node with value {search_value}:") # Searching for node with value 100
+    result = avl.searchNode(avl.root, search_value)
+    print(result if result else "Node not found") # Node not found
