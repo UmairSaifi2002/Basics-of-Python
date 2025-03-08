@@ -90,21 +90,25 @@ class AVLTree:
         if rootNode is None:
             return
         if rootNode.data == nodeValue:
-            return 'Successfully Found'
+            return rootNode
+            # return 'Successfully Found'
         customQueue = queue.Queue()
         customQueue.enqueue(rootNode)
         while not customQueue.isEmpty():
             node = customQueue.dequeue()
             if node.leftChild is not None:
                 if node.leftChild.data == nodeValue:
-                    return 'Successfully Found'
+                    return rootNode
+                    # return 'Successfully Found'
                 else:
                     customQueue.enqueue(node.leftChild)
             if node.rightChild is not None:
                 if node.rightChild.data == nodeValue:
-                    return 'Successfully Found'
+                    return rootNode
+                    # return 'Successfully Found'
                 else:
                     customQueue.enqueue(node.rightChild)
+        return None # If the node is not present in Tree
     
     # insertion in AVL Tree
     # it only have two cases
@@ -183,7 +187,59 @@ class AVLTree:
         # Step 5: Return the updated root
         return root 
     
+    def getMinValueNode(self, root):
+        if root is None or root.leftChild is None:
+            return root
+        return self.getMinValueNode(root.leftChild)
+
     # Now We will Learn about the Deletiion of the node in AVL Tree
+    def delete(self, root, value):
+        # Step 1 :- Perform Standard BST delete
+        if not root:
+            return root
+        
+        if value < root.data:
+            root.leftChild = self.delete(root.leftChild, value)
+        elif value > root.data:
+            root.rightChild = self.delete(root.rightChild, value)
+        else:
+            # node with only one child or no child
+            if root.leftChid is None:
+                return root.rightChild
+            if root.rightChild is None:
+                return root.leftChild
+
+        # Node with two Children : Get the inOrder Successor
+        temp = self.getMinValueNode(root.rightChild)
+
+        # Change the value of the root node with the delete node
+        root.data = temp.data
+        root.rightChild = self.delete(root.rightChild, temp.data)
+
+        if root is None:
+            return root
+
+        root.height = 1 + max(self.getHeight(root.leftChild), self.getHeight(root.rightChild))
+        balance = self.getBalanceFactor(root)
+
+        # Case 1: Left-Left (LL) Imbalance
+        if balance > 1 and value < root.leftChild.data:
+            return self.rightRotate(root)
+        # Case 2: Right-Right (RR) Imbalance
+        if balance < -1 and value > root.rightChild.data:
+            return self.leftRotate(root)
+        # Case 3: Left-Right (LR) Imbalance
+        if balance > 1 and value > root.leftChild.data:
+            root.leftChild = self.leftRotate(root.leftChild)
+            return self.rightRotate(root)
+        # Case 4: Right-Left (RL) Imbalance
+        if balance < -1 and value < root.rightChild.data:
+            root.rightChild = self.rightRotate(root.rightChild)
+            return self.leftRotate(root)
+        # Step 5: Return the updated root
+        return root 
+
+
 
 
 if __name__ == "__main__":
