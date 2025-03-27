@@ -13,7 +13,7 @@
 # Space Complexity of Creating the Dictionary
 
 # ---------- X ---------- X ---------- X ---------- X ---------- X ---------- X ---------- X ---------- X ---------- X ----------
-# Cresting Dictionary from the list
+# Creating Dictionary from the list
 # eng_sp_list = [('one','uno'), ('two','dos'), ('three','tres')]
 
 # my_dict2 = dict(eng_sp_list)
