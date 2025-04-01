@@ -63,30 +63,64 @@ class Graph:
         for vertex in self.adjacency_list.keys():
             print(vertex, " -> ", self.adjacency_list[vertex])
 
+    # Breadth First Search Traversal
     def bfs(self, vertex):
-    # Initialize a set to keep track of visited vertices
-    visited = set()
-    # Add the starting vertex to the visited set
-    visited.add(vertex)
-    # Initialize a queue with the starting vertex
-    # Note: Using deque is more efficient than a list for queue operations
-    queue = deque([vertex])
+        # Initialize a set to keep track of visited vertices
+        visited = set()
+        # Add the starting vertex to the visited set
+        visited.add(vertex)
+        # Initialize a queue with the starting vertex
+        # Note: Using deque is more efficient than a list for queue operations
+        queue = deque([vertex])
+        # Continue until the queue is empty
+        while queue:
+            # Remove and return the leftmost vertex from the queue
+            current_vertex = queue.popleft()
+            # Print the current vertex (part of BFS traversal result)
+            print(current_vertex, end=", ")
+            # Explore all adjacent vertices of the current vertex
+            for adjacent_vertex in self.adjacency_list[current_vertex]:
+                # Only process vertices that haven't been visited yet
+                if adjacent_vertex not in visited:
+                    # Mark the adjacent vertex as visited
+                    visited.add(adjacent_vertex)
+                    # Add the adjacent vertex to the queue to be processed later
+                    queue.append(adjacent_vertex)
     
-    # Continue until the queue is empty
-    while queue:
-        # Remove and return the leftmost vertex from the queue
-        current_vertex = queue.popleft()
-        # Print the current vertex (part of BFS traversal result)
-        print(current_vertex, end=", ")
-        
-        # Explore all adjacent vertices of the current vertex
-        for adjacent_vertex in self.adjacency_list[current_vertex]:
-            # Only process vertices that haven't been visited yet
-            if adjacent_vertex not in visited:
-                # Mark the adjacent vertex as visited
-                visited.add(adjacent_vertex)
-                # Add the adjacent vertex to the queue to be processed later
-                queue.append(adjacent_vertex)
+    # Depth First Search Traversal
+    def dfs(self, vertex):
+        """
+        Performs a Depth-First Search (DFS) traversal starting from a given vertex.
+
+        Args:
+            vertex: The starting vertex for the DFS traversal.
+        """
+        # Initialize a set to keep track of visited vertices.
+        # This prevents revisiting the same vertex multiple times and avoids infinite loops in cyclic graphs.
+        visited = set()
+        # Initialize a stack to keep track of vertices to visit.
+        # DFS uses a stack (LIFO - Last-In, First-Out) to explore deeper into the graph first.
+        stack = [vertex]
+        # Start the main loop that continues as long as there are vertices in the stack to explore.
+        while stack:
+            # Pop the top vertex from the stack. This is the current vertex being visited.
+            current_vertex = stack.pop()
+            # Check if the current vertex has already been visited.
+            if current_vertex not in visited:
+                # If the current vertex has not been visited:
+                # 1. Print the current vertex (you can modify this to perform other operations).
+                print(current_vertex, end=", ")
+                # 2. Mark the current vertex as visited by adding it to the 'visited' set.
+                visited.add(current_vertex)
+                # Iterate through the neighbors (adjacent vertices) of the current vertex.
+                # We assume that 'self.adjacency_list' is a dictionary or similar structure
+                # where keys are vertices and values are lists of their adjacent vertices.
+                for adjacent_vertex in self.adjacency_list[current_vertex]:
+                    # For each adjacent vertex, check if it has been visited.
+                    if adjacent_vertex not in visited:
+                        # If the adjacent vertex has not been visited, push it onto the stack.
+                        # This ensures that we will explore this neighbor in the future.
+                        stack.append(adjacent_vertex)
 
 graph = Graph()
 
@@ -105,6 +139,7 @@ graph.add_edge('D', 'E')
 graph.print_graph()
 
 graph.bfs('A')
+graph.dfs('A')
 
 '''
 Time Complexity Calculation for BFS
