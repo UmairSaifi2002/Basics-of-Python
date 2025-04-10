@@ -39,34 +39,46 @@
 # Now Create a Basic Structure of Graph
 class Graph:
     def __init__(self):
+        # Creates empty graph: {vertex: [connected_vertices]}
         self.adjacencyList = {}
+    
     def add_vertex(self, vertex):
+        # Adds new vertex if not already exists
         if vertex not in self.adjacencyList.keys():
-            self.adjacencyList[vertex] = []
+            self.adjacencyList[vertex] = []  # Start with no connections
             return True
-        return False
+        return False  # Vertex already exists
+    
     def add_edge(self, v1, v2):
+        # Connects two vertices (makes them neighbors)
         if v1 in self.adjacencyList.keys() and v2 in self.adjacencyList.keys():
-            self.adjacencyList[v1].append(v2)
-            self.adjacencyList[v2].append(v1)
+            self.adjacencyList[v1].append(v2)  # v2 added to v1's connections
+            self.adjacencyList[v2].append(v1)  # v1 added to v2's connections
             return True
-        return False
+        return False  # One or both vertices don't exist
+    
     def printList(self):
+        # Shows the graph: Vertex -> [all connected vertices]
         for v in self.adjacencyList:
             print(f'{v} : {self.adjacencyList[v]}')
+    
     def remove_edge(self, v1, v2):
+        # Removes connection between two vertices
         if v1 in self.adjacencyList.keys() and v2 in self.adjacencyList.keys():
-            self.adjacencyList[v1].remove(v2) 
-            self.adjacencyList[v2].remove(v1) 
+            self.adjacencyList[v1].remove(v2)  # Remove v2 from v1's connections
+            self.adjacencyList[v2].remove(v1)  # Remove v1 from v2's connections
             return True
-        return False
+        return False  # One or both vertices don't exist
+    
     def remove_vertex(self, v):
+        # Completely removes a vertex and all its connections
         if v in self.adjacencyList.keys():
+            # First remove all edges to this vertex from other vertices
             for otherVertex in self.adjacencyList[v]:
-                self.adjacencyList[otherVertex].remove(v)
-            del self.adjacencyList[v]
+                self.adjacencyList[otherVertex].remove(v)  # Remove v from each neighbor's list
+            del self.adjacencyList[v]  # Delete the vertex itself
             return True
-        return False
+        return False  # Vertex doesn't exist
 
 
 g = Graph()
@@ -79,11 +91,11 @@ g.add_edge('A', 'C')
 g.add_edge('B', 'C')
 g.printList()
 
-print('---------- Removing Edges ----------')
+print('---------- Removing an Edge ----------')
 g.remove_edge('B', 'C')
 g.printList()
 
-print('---------- Removing Vertex ----------')
+print('---------- Removing a Vertex ----------')
 g.remove_vertex('D')
 g.printList()
 
