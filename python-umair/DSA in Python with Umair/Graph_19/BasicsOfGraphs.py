@@ -95,7 +95,8 @@ print('---------- Removing an Edge ----------')
 g.remove_edge('B', 'C')
 g.printList()
 
+# Now you know about the print of the Graph
 print('---------- Removing a Vertex ----------')
-g.remove_vertex('D')
+# g.remove_vertex('D')
 g.printList()
 
