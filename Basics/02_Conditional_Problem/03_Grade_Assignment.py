@@ -6,8 +6,6 @@ student_score = int(input('Enter your score : '))
 if student_score > 100:
     print("please Verify your score!")
     exit()
-
-
 if 90<=student_score<=100:
     print('your Grade Score is : A')
 elif 80<=student_score<=89:
