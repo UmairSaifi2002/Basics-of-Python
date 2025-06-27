@@ -1,10 +1,10 @@
-# >>> chai = 'Masla Chai'
+# >>> chai = 'Masala Chai'
 # >>> chai
 # 'Masla Chai'
 
 # >>> slice_chai = chai[0:6]
 # >>> slice_chai
-# 'Masla '
+# 'Masala '
 
 # >>> num_list = "0123456789"
 # >>> num_list[:]
@@ -28,13 +28,13 @@
 # NameError: name 'upper' is not defined. Did you mean: 'super'?
 
 # >>> print(chai.upper())
-# MASLA CHAI
+# MASALA CHAI
 
 # >>> print(chai.lower()) 
-# masla chai
+# masala chai
 
 # >>> chai  
-# 'Masla Chai'
+# 'Masala Chai'
 # >>> chai = "    Masala Chai   "
 # >>> print(chai)
 #     Masala Chai   
